@@ -1,0 +1,77 @@
+---
+swagger: "2.0"
+info:
+  description: "This is a simple test application written to return the latest successfully\
+    \ built AMI."
+  version: "1.0.0"
+  title: "Swagger Simple Json Parser"
+host: "localhost:8080"
+basePath: "/"
+tags:
+- name: "builds"
+  description: "Returns latest successful build"
+schemes:
+- "http"
+consumes:
+- "application/json"
+produces:
+- "application/json"
+paths:
+  /builds:
+    post:
+      tags:
+      - "builds"
+      summary: "Send a list of built AMIs"
+      operationId: "BuildsParse"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "AMI builds list"
+        required: true
+        schema:
+          $ref: "#/definitions/jobs"
+        x-exportParamName: "Body"
+      responses:
+        200:
+          description: "Parse Successful"
+          schema:
+            $ref: "#/definitions/latest"
+        400:
+          description: "Invalid input"
+        422:
+          description: "Unable to parse"
+definitions:
+  jobs:
+    type: "object"
+    properties:
+      Build base AMI:
+        $ref: "#/definitions/jobs_Build base AMI"
+  latest:
+    type: "object"
+    properties:
+      build_date:
+        type: "string"
+      ami_id:
+        type: "string"
+      commit_hash:
+        type: "string"
+    example:
+      build_date: "build_date"
+      ami_id: "ami_id"
+      commit_hash: "commit_hash"
+  jobs_Build base AMI_Builds:
+    properties:
+      runtime_seconds:
+        type: "string"
+      build_date:
+        type: "string"
+      result:
+        type: "string"
+      output:
+        type: "string"
+  jobs_Build base AMI:
+    properties:
+      Builds:
+        type: "array"
+        items:
+          $ref: "#/definitions/jobs_Build base AMI_Builds"
