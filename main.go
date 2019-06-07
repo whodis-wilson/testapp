@@ -1,4 +1,13 @@
 /*
+ * @File: main.go
+ * @Date: 2019-06-07 03:19:09
+ * @OA:   Antonio Escalera
+ * @CA:   Antonio Escalera
+ * @Time: 2019-06-07 03:35:19
+ * @Mail: antonioe@wolfram.com
+ * @Copy: Copyright © 2019 Antonio Escalera <aj@angelofdeauth.host>
+ */
+/*
  * Swagger Simple Json Parser
  *
  * This is a simple test application written to return the latest successfully built AMI.
@@ -20,7 +29,7 @@ import (
 	//
 	//    sw "github.com/myname/myrepo/go"
 	//
-	sw "./go"
+	sw "github.com/angelofdeauth/testapp/go"
 )
 
 func main() {
