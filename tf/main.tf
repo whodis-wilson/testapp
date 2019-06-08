@@ -99,22 +99,9 @@ resource "aws_elb" "web" {
   }
 }
 
-output "web_elb_dns_name" {
-  description = "The DNS name of the ELB"
-  value       = "${element(concat(aws_elb.web.*.dns_name, list("")), 0)}"
-}
-
 resource "tls_private_key" "webkey" {
   algorithm = "RSA"
   rsa_bits  = 4096
-}
-
-output "public_key" {
-  value = "${tls_private_key.webkey.public_key_pem}"
-}
-
-output "private_key" {
-  value = "${tls_private_key.webkey.private_key_pem}"
 }
 
 resource "aws_key_pair" "auth" {
